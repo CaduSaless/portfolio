@@ -1,0 +1,58 @@
+.hover-custom {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(92, 92, 92, 0.457);
+  transition: all .3s;
+}
+
+.hover-custom:hover {
+  transform: scale(1.05);
+}
+
+.hover-custom::before {
+  content: '';
+  position: absolute;
+  background: radial-gradient(var(--cor), transparent, transparent);
+  top: var(--mouse-y);
+  left: var(--mouse-x);
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  opacity: 0.5;
+  transition: 0.2s, top 0s, left 0s;
+}
+
+.hover-custom:hover::before {
+  opacity: 1;
+}
+
+.hover-custom::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: rgba(10, 10, 10,0.75);
+  border-radius: .88rem;
+}
+
+@media screen and (max-width: 768px) {
+  .hover-custom {
+    background-color: var(--cor);
+  }
+
+  .hover-custom::before {
+    opacity: 0;
+  }
+  .hover-custom:hover::before {
+    opacity: 0;
+  }
+}
+
+@media not (prefers-color-scheme: dark) {
+  .hover-custom {
+    background-color: #e8dcdc;
+  }
+
+  .hover-custom::after {
+    background: #ffffffcc;
+  }
+}

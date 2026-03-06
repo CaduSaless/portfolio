@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #f2f0ef;
+  --second-bg: #586f6b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-escura-1: #0a0a0a;
+  --color-escura-2: #424242;
+  --color-clara: #f2f0ef;
+  --color-clara-2: #fff8f0;
+  --color-azul: #00D3F3;
+  
+  --font-inter: var(--font-da-inter);
+  --font-mono: var(--font-do-mono);
+  --text-shadow-pulse: 0px 0px 3px #00D3F3;
+  
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
+  var(--delay, 0ms);
+  
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+  --color-second-bg: var(--second-bg);
+}
+
+@keyframes pulse-neon {
+  0%, 100% { text-shadow: var(--text-shadow-pulse); opacity: 1; }
+  50% { text-shadow: 0px 0px 0px #00D3F3; opacity: 0.8; }
+}
+
+@utility animate-neon-text {
+  animation: pulse-neon 2s infinite ease-in-out;
+}
+
+@keyframes scroll {
+  from { transform: translateX(2%); }
+  to { transform: translateX(calc(-100% + 165px)); }
+}
+
+@utility animate-infinite-scroll {
+  animation: scroll 12s linear infinite alternate;
+  &:hover {
+    animation-play-state: paused; /* Pausa quando o mouse está em cima */
+  }
+}
+
+@utility shadow-inset-deep {
+  /* Usando a cor escura-2 com opacidade para não ficar pesado demais */
+  box-shadow: inset 0px 2px 15px 0px color-mix(in srgb, var(--color-escura-2), transparent 60%);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media not (prefers-color-scheme: dark) {
+  :root {
+    --background: #f2f0ef;
+    --foreground: #383F51;
+    --second-bg: #DEF2C8;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-animated-text {
+  background: linear-gradient(-45deg, #aaee52, #3ce7de, #bf48e7, #e63682);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 5s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 25% 25%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  75% {
+    background-position: 75% 75%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

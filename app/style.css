@@ -1,0 +1,9 @@
+.interface {
+  scroll-padding-top: 0px;
+  scroll-padding-bottom: 0px;
+}
+
+/* Evita que o navegador tente prever o scroll e falhe */
+* {
+  overflow-anchor: none;
+}
